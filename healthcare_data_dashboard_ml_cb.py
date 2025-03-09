@@ -178,7 +178,7 @@ import streamlit as st
 from transformers import pipeline
 
 # Load pre-trained model from Hugging Face
-chatbot = pipeline('conversational', model='microsoft/DialoGPT-medium')
+chatbot = pipeline('text-generation', model='microsoft/DialoGPT-medium')
 
 # Streamlit App UI
 st.title("Chatbot with Hugging Face")
