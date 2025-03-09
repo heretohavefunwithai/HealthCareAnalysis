@@ -174,7 +174,7 @@ if st.sidebar.button("Predict Stay"):
     prediction = model.predict(input_data)
     st.sidebar.write(f"**Predicted Length of Stay:** {prediction[0]:.2f} days")
 
-pip install openai
+#pip install openai
 
 import os
 import openai
