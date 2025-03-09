@@ -4,3 +4,6 @@ pandas  # (if your app uses pandas)
 numpy  # (if needed)
 seaborn  # (if needed for visualizations)
 plotly
+scikit-learn
+openai
+transformers
