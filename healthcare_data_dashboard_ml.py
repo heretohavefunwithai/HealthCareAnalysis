@@ -173,3 +173,26 @@ for col in missing_cols:
 if st.sidebar.button("Predict Stay"):
     prediction = model.predict(input_data)
     st.sidebar.write(f"**Predicted Length of Stay:** {prediction[0]:.2f} days")
+
+#pip install openai
+
+import os
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Function to get GPT-4 response
+def get_chatbot_response(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response["choices"][0]["message"]["content"]
+
+# Chatbot interface
+st.header("💬 Healthcare Chatbot")
+user_input = st.text_input("Ask me anything about healthcare data!")
+
+if user_input:
+    ai_response = get_chatbot_response(user_input)
+    st.write(f"🤖 Chatbot: {ai_response}")
