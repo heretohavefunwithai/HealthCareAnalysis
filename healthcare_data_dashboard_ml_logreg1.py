@@ -277,25 +277,20 @@ if st.button("Predict Readmission"):
 
 """# Chatbot"""
 
-pip install openai
+import streamlit as st
+from transformers import pipeline
 
-import os
-import openai
+# Load pre-trained model from Hugging Face
+chatbot = pipeline('text-generation', model='microsoft/DialoGPT-medium')
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Streamlit App UI
+st.title("Chatbot with Hugging Face")
 
-# Function to get GPT-4 response
-def get_chatbot_response(prompt):
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}]
-    )
-    return response["choices"][0]["message"]["content"]
-
-# Chatbot interface
-st.header("💬 Healthcare Chatbot")
-user_input = st.text_input("Ask me anything about healthcare data!")
+user_input = st.text_input("You: ")
 
 if user_input:
-    ai_response = get_chatbot_response(user_input)
-    st.write(f"🤖 Chatbot: {ai_response}")
+    # Create conversation and get response
+    conversation = chatbot(user_input)
+    
+    # Show chatbot's response
+    st.write(f"🤖 Chatbot: {conversation[0]['generated_text']}")
